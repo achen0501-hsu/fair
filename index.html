@@ -1,1 +1,537 @@
-<h1>Hello World</h1>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>科展海報與發表培訓工作站</title>
+  <style>
+    :root{
+      --ink:#17212a;--muted:#5f6b76;--paper:#fffdf8;--bg:#f2ecdf;--line:#d7cebf;
+      --blue:#185d84;--green:#3f755d;--gold:#a87922;--red:#a34538;--teal:#287b7a;--violet:#72548a;
+      --soft-blue:#eaf3f7;--soft-green:#ecf5ef;--soft-gold:#fff4da;--soft-red:#fae9e6;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;line-height:1.55;}
+    header{background:linear-gradient(90deg,#fffdf8 0 68%,#eaf3f7 68%);border-bottom:1px solid var(--line);padding:34px 42px 28px;position:sticky;top:0;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+    .header-inner{max-width:1260px;margin:auto;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end} h1{font-size:38px;color:var(--blue);margin:0;letter-spacing:0;line-height:1.12}.sub{font-size:18px;color:var(--muted);margin:8px 0 0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.toolbar button,.toolbar a{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 11px;color:var(--blue);font-weight:800;text-decoration:none;font-size:14px;cursor:pointer}.toolbar button:hover,.toolbar a:hover{background:var(--soft-blue)}
+    main{max-width:1260px;margin:0 auto;padding:24px 28px 60px}.section{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(0,0,0,.05)}h2{font-size:30px;color:var(--blue);margin:0 0 14px;letter-spacing:0}h3{font-size:21px;color:var(--green);margin:16px 0 8px}p{font-size:17px;margin:7px 0}.small{font-size:14px;color:var(--muted)}.note{border-left:6px solid var(--gold);background:var(--soft-gold);padding:10px 13px;color:#604617;margin:12px 0;font-size:15px}.warn{border-left:6px solid var(--red);background:var(--soft-red);padding:10px 13px;color:#642c25;margin:12px 0;font-size:15px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}.card{border:1px solid var(--line);border-left:7px solid var(--green);background:rgba(255,255,255,.72);border-radius:8px;padding:15px}.card.blue{border-left-color:var(--blue)}.card.gold{border-left-color:var(--gold)}.card.red{border-left-color:var(--red)}.card.teal{border-left-color:var(--teal)}.card.violet{border-left-color:var(--violet)}.card h3{margin-top:0}.card ul,.card ol{margin:8px 0 0 20px;padding:0}.card li{margin:5px 0;font-size:15.5px}.tag{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 9px;margin:3px 4px 3px 0;color:var(--muted);font-size:13px}.phase{display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:10px;border-top:1px solid var(--line);padding:13px 0}.phase:first-of-type{border-top:0}.phase .num{font-weight:900;color:#fff;background:var(--blue);border-radius:8px;padding:10px;text-align:center;align-self:start}.phase strong{color:var(--green)}
+    table{width:100%;border-collapse:collapse;background:#fff;margin:10px 0;font-size:15px}th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}th{background:var(--soft-blue);color:var(--blue)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}.tabs button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 11px;color:var(--blue);font-weight:800;cursor:pointer}.tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}.case-panel{display:none}.case-panel.active{display:block}.qbank{display:grid;grid-template-columns:260px 1fr;gap:16px}.filterbox{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;align-self:start;position:sticky;top:148px}.filterbox button{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:6px;margin:6px 0;padding:8px;color:var(--ink);cursor:pointer}.filterbox button.active{border-color:var(--blue);background:var(--soft-blue);color:var(--blue);font-weight:800}.questions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.qcard{border:1px solid var(--line);border-left:6px solid var(--teal);background:#fff;border-radius:8px;padding:13px}.qcard .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.qcard .q{font-weight:900;color:var(--ink)}.qcard .a{font-size:14px;color:var(--muted);margin-top:8px}.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.check-group{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px}.check-group h3{margin-top:0}.check-item{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:start;border-top:1px solid #ece4d9;padding:8px 0}.check-item:first-of-type{border-top:0}.check-item input{margin-top:5px}.score{display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:14px}.meter{height:18px;background:#ede5d9;border-radius:999px;overflow:hidden;border:1px solid var(--line)}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));transition:width .25s}.score-num{font-size:28px;font-weight:900;color:var(--blue);text-align:right}.print-summary{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:14px;color:var(--muted)}.timer{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.timer .clock{font-size:34px;font-weight:900;color:var(--blue);min-width:100px}.timer button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 10px;color:var(--blue);font-weight:800;cursor:pointer}.sources a{color:var(--blue);font-weight:800}.poster-map{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.poster-map svg{width:100%;height:auto;display:block}.anchor-list{display:flex;gap:8px;flex-wrap:wrap}.anchor-list a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:800;text-decoration:none;font-size:14px}
+
+
+
+
+    .source-stack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.source-card{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blue);border-radius:8px;padding:12px}.source-card h3{margin-top:0;font-size:18px}.coach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.coach-item{background:#fff;border:1px solid var(--line);border-left:7px solid var(--green);border-radius:8px;padding:12px}.coach-item.gold{border-left-color:var(--gold)}.coach-item.red{border-left-color:var(--red)}.coach-item.blue{border-left-color:var(--blue)}.matrix{display:grid;grid-template-columns:160px repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:10px 0}.matrix div{background:#fff;padding:9px;font-size:14px}.matrix .head{background:var(--soft-blue);color:var(--blue);font-weight:900}.imrad-workbench{display:grid;grid-template-columns:340px 1fr;gap:14px}.imrad-workbench textarea{width:100%;min-height:190px;border:1px solid var(--line);border-radius:8px;padding:10px;font-family:inherit}.imrad-result{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.imrad-bar{display:grid;grid-template-columns:120px 1fr 42px;gap:8px;align-items:center;margin:7px 0}.phase-ladder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.ladder-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.ladder-card strong{color:var(--blue)}.logbook-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.log-prompts{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.resource-filter{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.resource-filter button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:800;cursor:pointer}.resource-filter button.active{background:var(--blue);color:#fff}.external-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.external-item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px}.external-item a{color:var(--blue);font-weight:900;text-decoration:none}.external-item p{font-size:13px;color:var(--muted)}.print-card{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:12px;margin-top:10px}
+    .online-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tool-panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}.tool-panel h3{margin-top:0}.tool-panel textarea,.tool-panel input,.tool-panel select{width:100%;border:1px solid var(--line);border-radius:7px;padding:8px;font-family:inherit;background:#fff}.tool-panel textarea{min-height:120px;resize:vertical}.tool-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tool-actions button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 11px;color:var(--blue);font-weight:800;cursor:pointer}.tool-actions button.primary{background:var(--blue);border-color:var(--blue);color:#fff}.rubric-row{display:grid;grid-template-columns:150px 1fr 52px;gap:9px;align-items:center;margin:8px 0}.rubric-row input{padding:0}.tool-result{background:#fffdf7;border:1px dashed var(--line);border-radius:8px;padding:10px;margin-top:10px;white-space:pre-wrap;color:var(--muted);font-size:14px}.question-stage{border:1px solid var(--line);border-left:7px solid var(--red);border-radius:8px;background:#fff;padding:12px;margin-top:10px}.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.resource-grid a{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--blue);text-decoration:none;font-weight:800}.resource-grid span{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:4px}.plan-list{display:grid;gap:8px;margin-top:10px}.plan-item{background:#fff;border:1px solid var(--line);border-left:6px solid var(--green);border-radius:8px;padding:10px}.mini-badge{display:inline-block;background:var(--soft-blue);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px;color:var(--blue);font-size:12px;font-weight:800}
+    .judge-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.judge-card{background:#fff;border:1px solid var(--line);border-top:7px solid var(--blue);border-radius:8px;padding:13px}.judge-card.challenge{border-top-color:var(--red)}.judge-card.affective{border-top-color:var(--gold)}.judge-card h3{margin-top:0}.practice-flow{display:grid;grid-template-columns:110px 1fr 1fr;gap:10px}.flow-time{background:var(--green);color:#fff;font-weight:900;border-radius:8px;padding:10px;text-align:center}.flow-task,.flow-observe{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px}.qa-script{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.qa-script .card p{font-size:14px}.light-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.light{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.light.green{border-left:7px solid var(--green)}.light.gold{border-left:7px solid var(--gold)}.light.red{border-left:7px solid var(--red)}.source-note{font-size:13px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:8px;padding:10px;margin-top:12px}
+    .six-plan{display:grid;grid-template-columns:120px 1fr 1fr;gap:10px;margin-top:12px}.six-row{display:contents}.six-time{background:var(--blue);color:#fff;font-weight:900;border-radius:8px;padding:10px;text-align:center}.six-task,.six-coach{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px}.script-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;margin:10px 0}.script-line{display:grid;grid-template-columns:150px 1fr;gap:10px;border-top:1px solid #ece4d9;padding:8px 0}.script-line:first-child{border-top:0}.script-line strong{color:var(--blue)}.rubric-6{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.rubric-6 .card p{font-size:14px}
+    .ai-layout{display:grid;grid-template-columns:360px 1fr;gap:16px}.upload-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}.upload-box input[type=file],.upload-box textarea{width:100%;border:1px solid var(--line);border-radius:7px;padding:9px;background:#fff;font-family:inherit}.upload-box textarea{min-height:150px;resize:vertical}.ai-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.ai-actions button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 11px;color:var(--blue);font-weight:800;cursor:pointer}.ai-actions button.primary{background:var(--blue);border-color:var(--blue);color:#fff}.ai-result{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}.ai-score{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}.ai-score .bigscore{font-size:38px;font-weight:900;color:var(--blue);text-align:center}.ai-pill{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 9px;margin:3px;color:var(--muted);font-size:13px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.suggestion{border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:8px;padding:10px;background:#fffdf7}.suggestion.good{border-left-color:var(--green);background:#f5fbf6}.suggestion.warn{border-left-color:var(--red);background:#fff7f5}.file-preview{margin-top:10px;border:1px dashed var(--line);border-radius:8px;padding:10px;background:#fff}.file-preview img{max-width:100%;border-radius:6px;display:block}.file-preview embed{width:100%;height:320px;border:0}.category-bars{display:grid;gap:7px;margin-top:12px}.cat-row{display:grid;grid-template-columns:120px 1fr 42px;gap:8px;align-items:center;font-size:14px}.cat-meter{height:12px;background:#ede5d9;border:1px solid var(--line);border-radius:999px;overflow:hidden}.cat-meter span{display:block;height:100%;background:var(--green);width:0}.qtype-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}.qtype-legend .card p{font-size:14px}
+@media(max-width:900px){.ai-layout,.suggestions,.qtype-legend,.six-plan,.script-line,.rubric-6,.judge-map,.practice-flow,.qa-script,.light-grid,.online-tools,.resource-grid,.source-stack,.coach-grid,.imrad-workbench,.phase-ladder,.logbook-grid,.external-list{grid-template-columns:1fr}.matrix{grid-template-columns:1fr}header{position:static;padding:24px}.header-inner{grid-template-columns:1fr}.toolbar{justify-content:flex-start}main{padding:14px}.grid,.grid.three,.grid.four,.qbank,.questions,.check-grid,.score{grid-template-columns:1fr}.phase{grid-template-columns:1fr}.filterbox{position:static}.section{padding:18px}}@media print{header{position:static;box-shadow:none}.toolbar,.tabs,.filterbox,.timer button{display:none}.section{break-inside:avoid;box-shadow:none}.case-panel{display:block}.questions,.check-grid,.grid,.grid.three,.grid.four{grid-template-columns:1fr 1fr}.qbank{display:block}.qcard{break-inside:avoid}body{background:#fff}main{max-width:none}.score{display:none}}
+  
+    /* Layout stability patch for opening index.html directly from File Explorer */
+    .header-inner{grid-template-columns:minmax(0,1fr) auto;align-items:center}.header-inner>*{min-width:0}h1,.sub,h2,h3,p,li,td,th,.card,.box,.tool-panel,.section{overflow-wrap:anywhere}.site-menu{position:relative;justify-self:end;z-index:60}.site-menu summary{list-style:none;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 12px;color:var(--blue);font-weight:900;font-size:14px}.site-menu summary::-webkit-details-marker{display:none}.site-menu summary:after{content:" ▾"}.site-menu[open] summary:after{content:" ▴"}.menu-links{position:absolute;right:0;top:calc(100% + 8px);width:min(760px,calc(100vw - 32px));max-height:72vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:0 18px 44px rgba(0,0,0,.18);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.menu-links a,.menu-links button{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px 10px;color:var(--blue);font-weight:800;text-decoration:none;font-size:14px;white-space:normal;line-height:1.35}.menu-links a:hover,.menu-links button:hover{background:var(--soft-blue)}.grid>*,.online-tools>*,.resource-grid>*,.external-list>*,.source-stack>*,.coach-grid>*,.phase-ladder>*,.logbook-grid>*,.check-grid>*,.questions>*,.suggestions>*{min-width:0}img,svg,embed,iframe{max-width:100%}table{display:block;overflow-x:auto;white-space:normal}.matrix{overflow-x:auto}.matrix div{min-width:0}.qbank{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}@media(max-width:900px){.site-menu{justify-self:start}.menu-links{position:fixed;left:12px;right:12px;top:96px;width:auto;grid-template-columns:1fr;max-height:70vh}header{position:static}.header-inner{grid-template-columns:1fr}.qbank{grid-template-columns:1fr}}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div><h1>科展海報與發表培訓工作站</h1><p class="sub">分階段製作細節、課堂演練、口語報告訓練、詢答題庫與檢核機制｜以三件作品為例</p></div>
+    <details class="site-menu"><summary>功能選單</summary><div class="menu-links"><a href="#complete-guide">完整指導</a><a href="#stages">海報階段</a><a href="#oral">口語報告</a><a href="#sixmin">6分鐘報告</a><a href="#judge-practice">評審口試</a><a href="#online-opt">網路優化</a><a href="#imrad">IMRaD</a><a href="#coaching-flow">輔導流程</a><a href="#resource-library">資源庫</a><a href="#related-links">相關連結</a><a href="#qbank">詢答題庫</a><a href="#poster-ai">AI海報檢核</a><a href="#check">檢核機制</a><button onclick="window.print()">列印 / 另存 PDF</button></div></details>
+  </div>
+</header>
+<main>
+  <section class="section">
+    <h2>培訓使用方式</h2>
+    <div class="grid three">
+      <div class="card blue"><h3>1. 先建模</h3><p>每組先完成「一句研究主張」與「一圖一結論」，避免海報變成資料堆疊。</p></div>
+      <div class="card"><h3>2. 再製作</h3><p>依六階段逐步完成海報：主張、素材、版面、圖表、定稿、模擬評審。</p></div>
+      <div class="card gold"><h3>3. 最後演練</h3><p>用口語報告流程、題庫與檢核表，讓學生把海報變成可被評審相信的故事。</p></div>
+    </div>
+    <div class="note">官方要點提醒：全國科展實施要點強調科學性、教育性、生活性、真實性與安全性；研究過程需做成研究或實驗日誌，評審重視科學方法、展示與表達能力。</div>
+  </section>
+
+
+  <section class="section" id="complete-guide">
+    <h2>完整科展指導培訓總覽</h2>
+    <p>本版整合工作區中的海報發表全攻略、IMRaD 論文寫作指南、臺北市集中輔導手冊與策略手冊資料，形成「研究寫作、海報製作、口語報告、評審詢答、賽前輔導」一站式網站。</p>
+    <div class="source-stack">
+      <div class="source-card"><h3>海報與發表全攻略</h3><p>納入低掃描次數、ㄇ型展板配置、圖表線性化、邏輯對齊、3 分鐘與 6 分鐘報告策略。</p></div>
+      <div class="source-card"><h3>IMRaD 寫作全書</h3><p>納入緒論漏斗、方法可重現、結果圖表先行、討論機制與限制的寫作訓練。</p></div>
+      <div class="source-card"><h3>集中輔導手冊</h3><p>納入分組輔導、模擬評審、5 分鐘答辯、自評紀錄表與研究日誌要求。</p></div>
+      <div class="source-card"><h3>Strategic Playbook</h3><p>原 PDF/PPTX 多為圖片型資料；本版以策略訓練精神補入賽前作戰、評審攻防與任務排程。</p></div>
+    </div>
+    <h3>網站使用路線</h3>
+    <div class="phase-ladder">
+      <div class="ladder-card"><strong>第 1 站：論文主線</strong><p>用 IMRaD 檢查研究說明書，確保 I 導出 M、R 支持 D。</p></div>
+      <div class="ladder-card"><strong>第 2 站：海報主圖</strong><p>用金牌海報清單檢查版面、主圖、圖說、誤差線與結論。</p></div>
+      <div class="ladder-card"><strong>第 3 站：口語攻防</strong><p>使用 6 分鐘報告、隨機評審追問與題庫分類反覆演練。</p></div>
+      <div class="ladder-card"><strong>第 4 站：賽前作戰</strong><p>用集中輔導流程、自評表、研究日誌與排程器完成最後修正。</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="gold-poster">
+    <h2>金牌海報與賽場說服升級</h2>
+    <div class="coach-grid">
+      <div class="coach-item blue"><h3>低掃描次數</h3><p>每一版面重點區塊不超過 3 個，評審每板掃視 3 次內就能抓到重點。</p></div>
+      <div class="coach-item"><h3>圖表佔比</h3><p>海報應以圖表、流程圖、裝置圖為主，文字負責導讀，不負責堆疊內容。</p></div>
+      <div class="coach-item gold"><h3>1 公尺可讀</h3><p>站在 1 公尺外仍能讀出標題、座標、圖說與核心結論。</p></div>
+      <div class="coach-item"><h3>線性化與斜率</h3><p>物理作品若可行，將曲線轉換為線性關係，說明斜率、截距、R² 與物理意義。</p></div>
+      <div class="coach-item red"><h3>禁用人為誤差</h3><p>不要籠統說「人為誤差」；改說反應時間、解析度、角度偏差或環境波動造成的不確定度。</p></div>
+      <div class="coach-item gold"><h3>頁碼與指引</h3><p>海報區塊或圖表加上編號，評審追問時學生能快速指向證據。</p></div>
+    </div>
+    <h3>邏輯對齊矩陣</h3>
+    <div class="matrix"><div class="head">項目</div><div class="head">本質</div><div class="head">高分寫法</div><div class="head">檢核問題</div><div>研究動機</div><div>Why</div><div>基於觀察事實、資料矛盾或文獻缺口。</div><div>是否避免作文式抒情？</div><div>研究目的</div><div>What</div><div>拆成 2-3 個可執行、可驗證任務。</div><div>每一目的是否都有結果回應？</div><div>方法</div><div>How</div><div>變因、裝置、校正、重複次數可重現。</div><div>別人能否照做？</div><div>結果</div><div>Found</div><div>以主圖、趨勢、量化數字與誤差說話。</div><div>資料是否足以支持結論？</div><div>討論</div><div>Meaning</div><div>解釋機制，說明限制與下一步。</div><div>是否知道證據邊界？</div></div>
+  </section>
+
+  <section class="section" id="imrad">
+    <h2>IMRaD 科展論文寫作與檢核</h2>
+    <div class="coach-grid">
+      <div class="coach-item blue"><h3>I｜緒論</h3><p>用漏斗式寫作：背景、文獻缺口、研究問題、假說。重點是證明研究必要性。</p></div>
+      <div class="coach-item"><h3>M｜方法</h3><p>重點是可重現：變因、材料規格、裝置流程、校正、重複測量與資料處理。</p></div>
+      <div class="coach-item gold"><h3>R｜結果</h3><p>圖表先行，只描述事實，不在結果章節過度解釋原因。</p></div>
+      <div class="coach-item red"><h3>D｜討論</h3><p>解釋機制、對照前人、面對失敗數據、說明限制與未來方向。</p></div>
+    </div>
+    <h3>IMRaD 文字檢核器</h3>
+    <div class="imrad-workbench"><div><textarea id="imradText" placeholder="貼上作品說明書摘要、章節標題或一段論文文字，檢查 IMRaD 完整度。"></textarea><div class="tool-actions"><button class="primary" onclick="runImradAudit()">檢核 IMRaD</button><button onclick="fillImradTemplate()">插入寫作模板</button></div></div><div class="imrad-result" id="imradResult">尚未檢核。</div></div>
+    <div class="note">寫作訓練：請學生將目前作品各寫一段 I、M、R、D，每段只允許 120 字，再用檢核器找出缺口。</div>
+  </section>
+
+  <section class="section" id="coaching-flow">
+    <h2>集中輔導式培訓流程</h2>
+    <p>參考集中輔導手冊，可將培訓安排為「精進海報、精進表達、模擬評審、回顧展望」四輪循環，每一輪都產生可修改的具體任務。</p>
+    <div class="phase-ladder">
+      <div class="ladder-card"><strong>第一輪：精進海報</strong><p>檢查內容架構、圖表圖例、字體大小、版面簡明與邏輯順序。</p></div>
+      <div class="ladder-card"><strong>第二輪：精進表達</strong><p>要求學生丟稿報告，聚焦主軸，眼神能與評審及海報互動。</p></div>
+      <div class="ladder-card"><strong>第三輪：模擬評審</strong><p>採 10/8/5/6 分鐘報告與 5 分鐘答辯，或世界咖啡館同步輪轉。</p></div>
+      <div class="ladder-card"><strong>第四輪：回顧展望</strong><p>學生填寫今天學到什麼、下一步努力方向，老師只給一個最優先修改點。</p></div>
+    </div>
+    <h3>自評紀錄表重點</h3>
+    <table><tr><th>面向</th><th>3 分滿意標準</th><th>待加強警訊</th></tr><tr><td>海報</td><td>架構清楚、圖表清晰、字體適中、版面循序。</td><td>文字太小、太多、太雜，評審找不到主圖。</td></tr><tr><td>口語表達</td><td>聚焦主軸、丟稿流暢、掌握時間、眼神互動。</td><td>逐字背稿、背對評審、時間嚴重超過。</td></tr><tr><td>Q&A</td><td>清楚簡潔、思考縝密、補強亮點、虛心接受。</td><td>辯駁、浮誇、閃躲限制或只有一人能回答。</td></tr><tr><td>其他</td><td>分工默契、研究日誌真實、道具熟練、態度科學。</td><td>說不出自己貢獻，原始紀錄無法追溯。</td></tr></table>
+  </section>
+
+  <section class="section" id="logbook">
+    <h2>研究日誌、原始資料與學生主體性</h2>
+    <div class="logbook-grid">
+      <div class="log-prompts"><h3>研究日誌每天要記</h3><ul><li>今天的研究問題或假設。</li><li>實驗條件、材料規格、儀器設定。</li><li>原始數據與照片檔名。</li><li>異常值、失敗、臨時改變與理由。</li><li>下一次要修正的變因。</li></ul></div>
+      <div class="log-prompts"><h3>口試時可用來證明</h3><ul><li>作品是學生親自完成。</li><li>變因控制不是事後包裝。</li><li>異常值有被看見與處理。</li><li>研究歷程具備真實性與科學態度。</li><li>團隊每位作者都有具體貢獻。</li></ul></div>
+    </div>
+    <div class="print-card"><strong>一句話提醒：</strong>研究日誌不是行政附件，而是評審追問「你真的做過嗎？」時最有力的證據。</div>
+  </section>
+
+  <section class="section" id="stages">
+    <h2>海報製作六階段：細節與演練</h2>
+    <div class="phase"><div class="num">階段 1<br>主張收斂</div><div><strong>製作細節</strong><p>把作品說明書壓成一句可被驗證的主張：研究對象、操作變因、量測指標、主要發現。</p></div><div><strong>演練</strong><p>30 秒電梯版：每組不得看稿，說出「我們研究＿＿，改變＿＿，測量＿＿，發現＿＿」。</p></div><div><strong>產出</strong><p>一句主張、三個關鍵詞、最重要的一張圖。</p></div></div>
+    <div class="phase"><div class="num">階段 2<br>素材盤點</div><div><strong>製作細節</strong><p>把資料分成：必放、可補充、刪除。必放只包含能支撐主張的圖表與方法。</p></div><div><strong>演練</strong><p>紅筆刪支線：學生圈出每張圖服務哪一句結論，說不出就移到補充資料。</p></div><div><strong>產出</strong><p>核心圖 1 張、補強圖 2 張、方法流程圖 1 張、限制清單。</p></div></div>
+    <div class="phase"><div class="num">階段 3<br>版面草圖</div><div><strong>製作細節</strong><p>依「ㄇ型作品板」安排左板問題與變因，中板方法與主圖，右板結論與詢答。</p></div><div><strong>演練</strong><p>便利貼排版：每張便利貼只能寫一個區塊標題，先排動線再做美化。</p></div><div><strong>產出</strong><p>左中右板草圖、標題板文字、評審視線路徑。</p></div></div>
+    <div class="phase"><div class="num">階段 4<br>圖表重寫</div><div><strong>製作細節</strong><p>圖表要有單位、樣本數、誤差或重複次數；圖下加一句「這張圖證明什麼」。</p></div><div><strong>演練</strong><p>一圖一結論：15 秒講座標與趨勢，15 秒講支持哪個結論。</p></div><div><strong>產出</strong><p>主圖標題、圖說、誤差說明、資料來源。</p></div></div>
+    <div class="phase"><div class="num">階段 5<br>文字降噪</div><div><strong>製作細節</strong><p>海報文字以短句為主。每段只回答一個問題：為何做、怎麼做、看到什麼、所以如何解釋。</p></div><div><strong>演練</strong><p>50% 刪字：把每段文字刪到原本一半，再檢查科學意義是否仍清楚。</p></div><div><strong>產出</strong><p>摘要版方法、三句結論、三句限制。</p></div></div>
+    <div class="phase"><div class="num">階段 6<br>模擬評審</div><div><strong>製作細節</strong><p>用評審題庫檢查海報漏洞：誤差、控制變因、機制、外推、原創性。</p></div><div><strong>演練</strong><p>三輪追問：第一輪問事實，第二輪問原因，第三輪問限制與下一步。</p></div><div><strong>產出</strong><p>修正版海報、題庫答題卡、個人分工表。</p></div></div>
+  </section>
+
+  <section class="section">
+    <h2>ㄇ型作品板示意與內容配置</h2>
+    <div class="poster-map"><svg viewBox="0 0 980 420" role="img" aria-label="全國科展ㄇ型海報配置">
+      <rect x="360" y="24" width="260" height="60" fill="#fff4da" stroke="#a87922" stroke-width="3" rx="6"/><text x="490" y="60" text-anchor="middle" font-size="21" fill="#a87922" font-weight="700">標題板：75×20 cm</text>
+      <rect x="40" y="110" width="280" height="270" fill="#eaf3f7" stroke="#185d84" stroke-width="3" rx="8"/><rect x="350" y="110" width="310" height="270" fill="#ecf5ef" stroke="#3f755d" stroke-width="3" rx="8"/><rect x="690" y="110" width="250" height="270" fill="#fae9e6" stroke="#a34538" stroke-width="3" rx="8"/>
+      <text x="180" y="152" text-anchor="middle" font-size="22" fill="#185d84" font-weight="700">左板</text><text x="180" y="188" text-anchor="middle" font-size="17">問題、動機、變因</text><text x="180" y="218" text-anchor="middle" font-size="17">文獻差異與方法概念</text>
+      <text x="505" y="152" text-anchor="middle" font-size="22" fill="#3f755d" font-weight="700">中板</text><text x="505" y="188" text-anchor="middle" font-size="17">裝置、流程、主圖</text><text x="505" y="218" text-anchor="middle" font-size="17">模型與核心證據</text>
+      <text x="815" y="152" text-anchor="middle" font-size="22" fill="#a34538" font-weight="700">右板</text><text x="815" y="188" text-anchor="middle" font-size="17">結論、限制、詢答</text><text x="815" y="218" text-anchor="middle" font-size="17">後續研究與原始資料</text>
+    </svg></div>
+  </section>
+
+  <section class="section" id="cases">
+    <h2>三件作品示範：海報與報告焦點</h2>
+    <div class="tabs"><button class="case-tab active" data-case="hall">霍爾量測</button><button class="case-tab" data-case="light">導光照度</button><button class="case-tab" data-case="friction">鞋底摩擦</button></div>
+    <div class="case-panel active" id="case-hall">
+      <div class="grid three"><div class="card blue"><h3>海報核心主張</h3><p>用霍爾感測器把磁性或磁場變化從定性觀察轉成定量證據。</p></div><div class="card"><h3>最重要主圖</h3><p>磁場強度對距離、角度、電流或材料的趨勢圖，附校正與誤差。</p></div><div class="card red"><h3>最大風險</h3><p>感測器誤差、方向偏差或背景磁場大於觀察差異。</p></div></div>
+      <table><tr><th>海報區塊</th><th>建議寫法</th></tr><tr><td>方法</td><td>畫出感測器位置、量測軸向、固定距離方式與零點校正。</td></tr><tr><td>結果</td><td>主圖先講趨勢，再補數值；不要只放多張相似圖。</td></tr><tr><td>限制</td><td>說明背景磁場、距離誤差、角度誤差與材料磁滯可能影響。</td></tr></table>
+    </div>
+    <div class="case-panel" id="case-light">
+      <div class="grid three"><div class="card blue"><h3>海報核心主張</h3><p>不同導光媒介不只改變亮度，也改變模型教室照度分佈與均勻度。</p></div><div class="card"><h3>最重要主圖</h3><p>測點矩陣熱區圖，加上平均照度、最低照度與均勻度指標。</p></div><div class="card red"><h3>最大風險</h3><p>只比較「平均變亮」，忽略暗區改善、眩光與測點控制。</p></div></div>
+      <table><tr><th>海報區塊</th><th>建議寫法</th></tr><tr><td>方法</td><td>標出模型比例、光源位置、照度計高度、測點間距與環境光遮蔽。</td></tr><tr><td>結果</td><td>用熱區圖呈現分佈，用指標比較媒介效果。</td></tr><tr><td>限制</td><td>說明模型尺度、材料尺寸、光源型態與真實教室外推限制。</td></tr></table>
+    </div>
+    <div class="case-panel" id="case-friction">
+      <div class="grid three"><div class="card blue"><h3>海報核心主張</h3><p>鞋底紋路影響摩擦力，但要拆開材質、接觸面積與地面狀態。</p></div><div class="card"><h3>最重要主圖</h3><p>不同紋路在乾燥、潮濕等條件下的最大靜摩擦係數比較圖。</p></div><div class="card red"><h3>最大風險</h3><p>材質、硬度與紋路同時改變，導致不能歸因於紋路。</p></div></div>
+      <table><tr><th>海報區塊</th><th>建議寫法</th></tr><tr><td>方法</td><td>說清楚測量最大靜摩擦或動摩擦，固定拉動速度、角度、重量與地面水量。</td></tr><tr><td>結果</td><td>不要只排名鞋款；用摩擦係數、誤差與情境分組呈現。</td></tr><tr><td>限制</td><td>說明鞋底材質、磨耗、人體步態與真實地面複雜度。</td></tr></table>
+    </div>
+  </section>
+
+  <section class="section" id="oral">
+    <h2>學生口語報告訓練</h2>
+    <div class="grid"><div class="card blue"><h3>30 秒版</h3><p>用途：評審剛靠近時建立主張。</p><p><strong>句型：</strong>我們研究＿＿，改變＿＿，測量＿＿，結果發現＿＿，因此認為＿＿。</p></div><div class="card"><h3>3 分鐘版</h3><p>用途：課堂訓練主線。</p><ol><li>問題與動機 25 秒</li><li>實驗設計 45 秒</li><li>主要結果 60 秒</li><li>機制解釋 40 秒</li><li>限制與後續 30 秒</li></ol></div><div class="card gold"><h3>正式報告版</h3><p>用途：賽前完整演練。</p><p>以正式公告時間為準；可由 3 分鐘版擴充方法細節、補強圖與研究價值。</p></div><div class="card red"><h3>團隊分工</h3><p>每位學生至少負責一張圖、一個方法細節、一類追問題。團隊作品不能只有一位學生懂。</p></div></div>
+    <h3>口語演練計時器</h3>
+    <div class="timer"><div class="clock" id="clock">03:00</div><button onclick="setTimer(30)">30 秒</button><button onclick="setTimer(180)">3 分鐘</button><button onclick="setTimer(360)">6 分鐘</button><button onclick="setTimer(420)">7 分鐘</button><button onclick="startTimer()">開始</button><button onclick="pauseTimer()">暫停</button><button onclick="resetTimer()">重設</button><span class="small">訓練重點：時間到就停，讓學生學會取捨。</span></div>
+    <table><tr><th>訓練項目</th><th>檢查句</th><th>常見修正</th></tr><tr><td>開場</td><td>評審能否在 15 秒內知道研究問題？</td><td>把故事縮短，直接說現象與疑問。</td></tr><tr><td>方法</td><td>是否講清操縱、控制、應變變因？</td><td>用變因表或裝置圖取代長句。</td></tr><tr><td>結果</td><td>是否先講趨勢，再講數字？</td><td>不要逐格念數據，只講支持主張的比較。</td></tr><tr><td>結論</td><td>是否有說出限制？</td><td>用「目前資料能支持……尚不能外推到……」。</td></tr></table>
+  </section>
+
+
+  <section class="section" id="sixmin">
+    <h2>6 分鐘報告指南與培訓</h2>
+    <p>6 分鐘是最適合賽前訓練的標準長度：比 3 分鐘更能交代方法與證據，又能逼學生取捨，不把作品說明書整份背出來。</p>
+    <div class="six-plan">
+      <div class="six-row"><div class="six-time">0:00-0:35</div><div class="six-task"><strong>開場與研究問題</strong><br>用現象或矛盾切入，說出研究問題與主張。</div><div class="six-coach"><strong>教練提醒</strong><br>不能超過 35 秒；不要從完整背景故事開始。</div></div>
+      <div class="six-row"><div class="six-time">0:35-1:25</div><div class="six-task"><strong>研究設計</strong><br>說清操縱變因、控制變因、應變變因與公平比較方式。</div><div class="six-coach"><strong>教練提醒</strong><br>用變因表或裝置圖，不要逐字念方法。</div></div>
+      <div class="six-row"><div class="six-time">1:25-2:25</div><div class="six-task"><strong>實驗流程與量測可信度</strong><br>交代裝置、校正、重複次數、誤差或資料品質。</div><div class="six-coach"><strong>教練提醒</strong><br>這一段是挑戰型問題的防線。</div></div>
+      <div class="six-row"><div class="six-time">2:25-3:45</div><div class="six-task"><strong>主要結果圖</strong><br>選一張主圖，先講趨勢，再講關鍵數字，最後說支持哪句結論。</div><div class="six-coach"><strong>教練提醒</strong><br>不要逐點念數據；只講最能說服評審的比較。</div></div>
+      <div class="six-row"><div class="six-time">3:45-4:40</div><div class="six-task"><strong>機制解釋</strong><br>用科學概念、模型或物理量解釋為什麼會出現這個結果。</div><div class="six-coach"><strong>教練提醒</strong><br>從「看到什麼」提升到「為什麼」。</div></div>
+      <div class="six-row"><div class="six-time">4:40-5:25</div><div class="six-task"><strong>結論與限制</strong><br>結論回答研究問題，限制說明資料能支持到哪裡。</div><div class="six-coach"><strong>教練提醒</strong><br>限制不是扣分，是研究成熟度。</div></div>
+      <div class="six-row"><div class="six-time">5:25-6:00</div><div class="six-task"><strong>研究價值與下一步</strong><br>說出作品價值、可改進處與若多一週會補的實驗。</div><div class="six-coach"><strong>教練提醒</strong><br>收尾要回到主張，不要新增支線。</div></div>
+    </div>
+    <h3>6 分鐘講稿骨架</h3>
+    <div class="script-box">
+      <div class="script-line"><strong>一句開場</strong><span>我們注意到＿＿現象，因此想知道＿＿是否會影響＿＿。</span></div>
+      <div class="script-line"><strong>一句設計</strong><span>我們固定＿＿，改變＿＿，測量＿＿，用＿＿作為比較指標。</span></div>
+      <div class="script-line"><strong>一句可信度</strong><span>為了讓結果可信，我們做了＿＿校正／重複＿＿次／控制＿＿條件。</span></div>
+      <div class="script-line"><strong>一句主圖</strong><span>這張圖顯示＿＿隨著＿＿改變而＿＿，其中＿＿最明顯。</span></div>
+      <div class="script-line"><strong>一句機制</strong><span>我們認為原因是＿＿，因為＿＿會造成＿＿。</span></div>
+      <div class="script-line"><strong>一句限制</strong><span>目前資料能支持＿＿，但尚未涵蓋＿＿，因此下一步會＿＿。</span></div>
+    </div>
+    <h3>三件作品的 6 分鐘重點</h3>
+    <div class="grid three">
+      <div class="card blue"><h3>霍爾量測</h3><p><strong>時間重點：</strong>量測可信度要講足 60 秒。</p><ul><li>校正與背景磁場扣除</li><li>距離、方向與感測軸固定</li><li>主圖連到磁場模型或趨勢解釋</li></ul></div>
+      <div class="card"><h3>導光照度</h3><p><strong>時間重點：</strong>結果圖要講熱區分佈，而不只平均值。</p><ul><li>模型教室與測點矩陣</li><li>平均照度、最低照度、均勻度</li><li>導光、反射、散射的機制差異</li></ul></div>
+      <div class="card gold"><h3>鞋底摩擦</h3><p><strong>時間重點：</strong>先防止材質與紋路混淆。</p><ul><li>最大靜摩擦或動摩擦定義</li><li>拉速、重量、地面狀態控制</li><li>用 μs 而非只用拉力排名</li></ul></div>
+    </div>
+    <h3>6 分鐘報告評量規準</h3>
+    <div class="rubric-6">
+      <div class="card blue"><h3>時間</h3><p>5:40-6:10 內完成；各段不嚴重超時。</p></div>
+      <div class="card"><h3>主線</h3><p>每段都回到同一個研究主張。</p></div>
+      <div class="card gold"><h3>證據</h3><p>至少一張主圖講到趨勢、數字與結論。</p></div>
+      <div class="card red"><h3>限制</h3><p>能主動說明誤差、外推邊界與下一步。</p></div>
+    </div>
+    <div class="note">培訓流程：第一輪只看時間，第二輪只修圖表說明，第三輪加入挑戰型追問。每輪錄音或錄影 1 次，學生自行標記「贅詞、跳段、沒有證據的句子」。</div>
+  </section>
+
+
+  <section class="section" id="judge-practice">
+    <h2>評審口試提問實務經驗：如果我是評審，我會怎麼問？</h2>
+    <p>評審提問通常不是在找學生背錯哪一句，而是在快速判斷三件事：學生是否真正理解作品、研究方法是否站得住、結論是否知道邊界。口試訓練要讓學生看懂「問題背後的問題」。</p>
+    <div class="judge-map">
+      <div class="judge-card"><h3>一般說明性問題：問結構</h3><p><strong>評審想確認：</strong>作品主線是否清楚，學生能否把研究從動機、方法、結果到結論講成一個完整故事。</p><ul><li>你們研究問題是什麼？</li><li>最重要的發現是哪一個？</li><li>這張圖支持哪一句結論？</li></ul></div>
+      <div class="judge-card challenge"><h3>挑戰型問題：問細節</h3><p><strong>評審想確認：</strong>資料是否可信，控制變因、校正、重複測量、異常值與推論是否經得起追問。</p><ul><li>為什麼這樣設計實驗？</li><li>誤差來源是什麼？</li><li>是否有另一種解釋？</li></ul></div>
+      <div class="judge-card affective"><h3>情意態度問題：問歷程</h3><p><strong>評審想確認：</strong>學生是否親自參與，能否反思困難、失敗、分工與下一步，而不是只背老師整理好的答案。</p><ul><li>最困難的是什麼？</li><li>哪個失敗讓你們改變方法？</li><li>如果多一週會補什麼？</li></ul></div>
+    </div>
+
+    <h3>評審提問背後的 7 個檢查點</h3>
+    <table><tr><th>評審在查什麼</th><th>常見問法</th><th>答題要點</th></tr>
+      <tr><td>主題是否清楚且聚焦</td><td>你們到底想解決什麼問題？</td><td>用一句主張回答，不從長篇背景開始。</td></tr>
+      <tr><td>創意與價值</td><td>這和前人或課本內容差在哪？</td><td>說明新方法、新資料、新應用或新解釋。</td></tr>
+      <tr><td>控制變因是否完整</td><td>怎麼確定不是其他因素造成？</td><td>回到變因表，說明固定方式與可能殘餘誤差。</td></tr>
+      <tr><td>數據是否足以支持結論</td><td>重複次數夠嗎？有誤差線嗎？</td><td>講重複次數、變異範圍、異常值處理。</td></tr>
+      <tr><td>是否理解基本原理</td><td>為什麼會有這個趨勢？</td><td>用模型、物理量或機制解釋，不只描述圖形。</td></tr>
+      <tr><td>是否理解限制</td><td>換材料、尺度或環境還成立嗎？</td><td>先界定目前條件，再說外推需要補哪些實驗。</td></tr>
+      <tr><td>是否真正由學生完成</td><td>你負責哪一部分？最難的是什麼？</td><td>具體說自己的工作、失敗與修正歷程。</td></tr>
+    </table>
+
+    <h3>答題四步驟：先穩住，再說服</h3>
+    <div class="qa-script">
+      <div class="card blue"><h3>1. 定位問題</h3><p>先判斷老師問的是主張、方法、數據、機制、限制，或研究歷程。</p></div>
+      <div class="card"><h3>2. 先短答</h3><p>第一句先給答案：「我們判斷主要原因是……」「目前資料支持……」。</p></div>
+      <div class="card gold"><h3>3. 指向證據</h3><p>指海報上的圖、表、流程或原始紀錄，用資料支撐回答。</p></div>
+      <div class="card red"><h3>4. 補上邊界</h3><p>說明限制與下一步：「尚未測……，若要確認會……」。</p></div>
+    </div>
+
+    <h3>口試紅綠燈</h3>
+    <div class="light-grid">
+      <div class="light green"><h3>綠燈：加分行為</h3><ul><li>回答清楚、簡潔、思考縝密。</li><li>主動指向海報圖表與研究日誌。</li><li>每位作者都能說明自己的貢獻。</li><li>能把限制說成下一步研究。</li></ul></div>
+      <div class="light gold"><h3>黃燈：需要修正</h3><ul><li>答案太長，沒有先講結論。</li><li>只說「我們覺得」，沒有數據。</li><li>一題只由固定一位學生回答。</li><li>被問到異常值時閃躲。</li></ul></div>
+      <div class="light red"><h3>紅燈：容易扣分</h3><ul><li>與評審辯駁或硬凹。</li><li>結論超過資料支持範圍。</li><li>老師或隊友代答。</li><li>說不出原理、校正或自己負責的部分。</li></ul></div>
+    </div>
+
+    <h3>三件作品的實務追問示範</h3>
+    <table><tr><th>作品</th><th>評審可能先問</th><th>接著追問</th><th>學生要守住的核心</th></tr>
+      <tr><td>霍爾量測</td><td>你們如何確定霍爾感測器量到的是目標磁場？</td><td>背景磁場、距離、方向、校正誤差各怎麼處理？</td><td>量測可信度。用校正、空白組與固定裝置回答。</td></tr>
+      <tr><td>導光照度</td><td>你們說照度變好，是平均變亮還是分佈更均勻？</td><td>測點矩陣、照度計高度、環境光與真實教室外推如何處理？</td><td>評估指標。用熱區圖、最低照度與均勻度回答。</td></tr>
+      <tr><td>鞋底摩擦</td><td>摩擦力差異真的是紋路造成的嗎？</td><td>材質、硬度、接觸面積、拉速與地面狀態是否混淆？</td><td>變因拆解。用相同材質試片、μs 與情境分組回答。</td></tr>
+    </table>
+
+    <h3>15 分鐘模擬評審流程</h3>
+    <div class="practice-flow">
+      <div class="flow-time">0-6 分</div><div class="flow-task"><strong>學生報告</strong><br>依 6 分鐘指南完成主張、方法、主圖、機制、限制。</div><div class="flow-observe"><strong>觀察重點</strong><br>是否聚焦主線，是否看圖說話。</div>
+      <div class="flow-time">6-11 分</div><div class="flow-task"><strong>評審提問</strong><br>一般說明性 1 題、挑戰型 2 題、情意態度 1 題。</div><div class="flow-observe"><strong>觀察重點</strong><br>是否短答、指證據、說邊界。</div>
+      <div class="flow-time">11-14 分</div><div class="flow-task"><strong>追問補刀</strong><br>針對最弱處追問：誤差、控制變因、外推或原理。</div><div class="flow-observe"><strong>觀察重點</strong><br>是否能承認不足並提出補實驗。</div>
+      <div class="flow-time">14-15 分</div><div class="flow-task"><strong>回饋一句話</strong><br>評審只給一個必改建議，學生複述下一步。</div><div class="flow-observe"><strong>觀察重點</strong><br>是否能把建議轉成具體修正。</div>
+    </div>
+
+    <div class="source-note">整理依據：工作區上傳資料包含「如果我是評審，我會如何提問？」、「科展作品表達：數據解讀、海報製作、成果解說」、「科展分享簡報2022」與「臺北市參加第63屆全國科展集中輔導手冊」。其中可抽文字重點包含：海報需清晰且具邏輯、圖表與圖例清楚、回答問題需清楚簡潔且思考縝密、學生需了解基本科學原理、理解結論限制、團體每位作者均需理解且有貢獻、模擬評審包含海報報告與提問答辯。</div>
+  </section>
+
+
+  <section class="section" id="online-opt">
+    <h2>網路資源優化功能：把國際科展訓練做成工具</h2>
+    <p>參考 ISEF 評分面向、Science Buddies 展示板與口試準備資源，以及常見科展評分表，新增以下可操作功能。用途不是取代老師判斷，而是讓學生能用同一套標準反覆自評、修正、再演練。</p>
+    <div class="resource-grid">
+      <a href="https://www.societyforscience.org/isef/" target="_blank">Regeneron ISEF<span>參考國際科展評審面向與展示/口試精神。</span></a>
+      <a href="https://www.sciencebuddies.org/science-fair-projects/science-fair" target="_blank">Science Buddies Science Fair Guide<span>參考展示板、報告、評審準備與專案流程。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/" target="_blank">全國科展平台<span>核對臺灣科展規格、規則與實施要點。</span></a>
+    </div>
+    <div class="online-tools">
+      <div class="tool-panel">
+        <h3>功能一：國際規準加權自評</h3>
+        <p class="small">參考 ISEF 常見評分權重：問題/目標、方法、執行與分析、創意、展示表達。每項 1-5 分，系統換算為 100 分。</p>
+        <div id="rubricSliders"></div>
+        <div class="tool-result" id="rubricResult">請調整各項分數。</div>
+      </div>
+      <div class="tool-panel">
+        <h3>功能二：展示板易讀性檢核</h3>
+        <p class="small">貼上海報文字或標題清單，系統檢查是否有主張、方法、圖表、結論、限制與參考資料。</p>
+        <textarea id="boardAuditText" placeholder="貼上海報標題、摘要、各區塊標題、圖說與結論文字。"></textarea>
+        <div class="tool-actions"><button class="primary" onclick="runBoardAudit()">檢核展示板</button></div>
+        <div class="tool-result" id="boardAuditResult">尚未檢核。</div>
+      </div>
+      <div class="tool-panel">
+        <h3>功能三：隨機評審追問模擬</h3>
+        <p class="small">選擇追問模式後抽題。學生先 20 秒回答，再由同學判斷是否有「短答、證據、限制」。</p>
+        <select id="judgeMode"><option value="all">全部題型</option><option value="explain">一般說明性</option><option value="challenge">挑戰型</option><option value="affective">情意態度</option><option value="hall">霍爾量測</option><option value="light">導光照度</option><option value="friction">鞋底摩擦</option></select>
+        <div class="tool-actions"><button class="primary" onclick="drawJudgeQuestion()">抽一題</button><button onclick="revealJudgeHint()">顯示答題提示</button></div>
+        <div class="question-stage" id="judgeDraw">尚未抽題。</div>
+      </div>
+      <div class="tool-panel">
+        <h3>功能四：賽前排程產生器</h3>
+        <p class="small">輸入比賽或模擬評審日期，產生倒數任務。適合安排海報定稿、6 分鐘報告、口試與原始資料檢查。</p>
+        <input id="contestDate" type="date">
+        <div class="tool-actions"><button class="primary" onclick="makePrepPlan()">產生排程</button></div>
+        <div class="plan-list" id="prepPlan"><div class="plan-item">尚未產生排程。</div></div>
+      </div>
+    </div>
+    <div class="note">優化建議：每次模擬評審後，請學生把「國際規準自評」與「展示板易讀性檢核」各做一次，分數不追求漂亮，而是用來找下一輪最該修改的一件事。</div>
+  </section>
+
+
+
+  <section class="section" id="resource-library">
+    <h2>外部資源庫：研究、寫作、圖表、海報與倫理</h2>
+    <div class="resource-filter"><button class="ext-filter active" data-ext="all">全部</button><button class="ext-filter" data-ext="official">官方規則</button><button class="ext-filter" data-ext="research">文獻研究</button><button class="ext-filter" data-ext="visual">圖表海報</button><button class="ext-filter" data-ext="ethics">倫理安全</button><button class="ext-filter" data-ext="teaching">教學工具</button></div>
+    <div class="external-list" id="externalList"></div>
+    <div class="note">外部資源使用方式：先用官方規則核對資格與安全，再用歷屆優勝作品做標竿分析，最後用圖表與寫作工具提升呈現品質。</div>
+  </section>
+
+  <section class="section" id="related-links">
+    <h2>科展相關連結</h2>
+    <p>以下連結依培訓用途分類。正式送件、展示規格、安全審查與表單，請優先以全國科展平台與當年度公告為準；國際資源則適合用來補強研究倫理、展示安全、口試與海報訓練。</p>
+
+    <h3>臺灣官方科展與規則</h3>
+    <div class="resource-grid">
+      <a href="https://twsf.ntsec.gov.tw/" target="_blank" rel="noopener">全國科展資訊管理系統<span>全國中小學科展、臺灣國際科展、青少年科學人才培育與最新公告入口。</span></a>
+      <a href="https://www.ntsec.gov.tw/" target="_blank" rel="noopener">國立臺灣科學教育館<span>科展主辦單位與科學教育活動、課程、展覽資訊。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=38&lang=1" target="_blank" rel="noopener">全國科展實施要點<span>核對參賽資格、作品規範、送件要求與評審相關規定。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=39&lang=1" target="_blank" rel="noopener">全國科展安全規則<span>檢查生物、化學、電力、雷射、展示物與禁止展出事項。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=42&lang=1" target="_blank" rel="noopener">全國科展文件下載<span>下載當年度或相關附件、表件與作品文件。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=40&lang=1" target="_blank" rel="noopener">歷屆參展資料<span>查詢歷屆作品資料，做題目定位與競品分析。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1" target="_blank" rel="noopener">歷屆優勝作品<span>觀摩得獎作品的研究主張、方法、圖表與結論寫法。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=362&lang=1" target="_blank" rel="noopener">青少年科學人才培育<span>延伸探究與科學研究人才培育資源。</span></a>
+    </div>
+
+    <h3>臺灣國際科展與 ISEF 銜接</h3>
+    <div class="resource-grid">
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=32&lang=1" target="_blank" rel="noopener">臺灣國際科展實施要點<span>理解 TISF 與國際科展銜接的規範。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=33&lang=1" target="_blank" rel="noopener">臺灣國際科展安全規則<span>比對國際展覽安全要求與作品展示限制。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=36&lang=1" target="_blank" rel="noopener">臺灣國際科展文件下載<span>查找 TISF 表件、附件與參展文件。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=35&lang=1" target="_blank" rel="noopener">臺灣國際科展歷屆優勝作品<span>觀摩國際科展等級作品題目與表達方式。</span></a>
+      <a href="https://twsf.ntsec.gov.tw/Article.aspx?a=439&lang=1" target="_blank" rel="noopener">美國 ISEF 優秀作品題目分析<span>用於題目定位、作品創意與研究價值討論。</span></a>
+    </div>
+
+    <h3>國際科展、展示安全與研究表單</h3>
+    <div class="resource-grid">
+      <a href="https://www.societyforscience.org/isef/" target="_blank" rel="noopener">Regeneron ISEF 官方網站<span>國際科學與工程展覽會入口，可參考國際展示與口試精神。</span></a>
+      <a href="https://www.societyforscience.org/isef/international-rules/" target="_blank" rel="noopener">ISEF International Rules<span>學生研究倫理、安全、資格與國際科展規則。</span></a>
+      <a href="https://www.societyforscience.org/isef/forms/" target="_blank" rel="noopener">ISEF Forms<span>研究計畫、風險評估、人體/動物/生物安全等表件參考。</span></a>
+      <a href="https://ruleswizard.societyforscience.org/" target="_blank" rel="noopener">ISEF Rules Wizard<span>依研究內容判斷可能需要哪些審查文件。</span></a>
+      <a href="https://www.societyforscience.org/isef/international-rules/display-safety-rules/" target="_blank" rel="noopener">ISEF Display & Safety Rules<span>展示板、照片圖表引用、禁止展示物與安全檢查參考。</span></a>
+      <a href="https://www.sciencebuddies.org/science-fair-projects/science-fair" target="_blank" rel="noopener">Science Buddies Science Fair Guide<span>科展流程、展示板、口試準備、題目發想與專案管理教學資源。</span></a>
+    </div>
+
+    <div class="note">培訓建議：讓學生先看「歷屆優勝作品」找出同類作品的主圖與結論，再用「安全規則」檢查展示物，最後用 ISEF Rules Wizard 或 Display & Safety Rules 補強國際規格與研究倫理意識。</div>
+  </section>
+
+  <section class="section" id="qbank">
+    <h2>詢答問題題庫與演練</h2>
+    <div class="qtype-legend">
+      <div class="card blue"><h3>一般說明性問題</h3><p>問研究結構：為什麼做、怎麼做、結果是什麼。目標是讓學生講清主線。</p></div>
+      <div class="card red"><h3>挑戰型問題</h3><p>問細節與漏洞：控制變因、誤差、模型、外推。目標是測試證據強度。</p></div>
+      <div class="card gold"><h3>情意態度問題</h3><p>問研究歷程：最困難、如何分工、失敗後怎麼修正。目標是看學生是否真參與。</p></div>
+    </div>
+    <div class="qbank"><div class="filterbox"><strong>篩選題型</strong><button class="qfilter active" data-filter="all">全部題目</button><button class="qfilter" data-filter="explain">一般說明性</button><button class="qfilter" data-filter="challenge">挑戰型</button><button class="qfilter" data-filter="affective">情意態度</button><button class="qfilter" data-filter="hall">霍爾量測</button><button class="qfilter" data-filter="light">導光照度</button><button class="qfilter" data-filter="friction">鞋底摩擦</button><button class="qfilter" data-filter="method">方法與誤差</button><button class="qfilter" data-filter="logic">機制與推論</button><button class="qfilter" data-filter="limit">限制與外推</button></div><div class="questions" id="questions"></div></div>
+    <div class="note">演練方式：一位老師問，一位學生答，另一位學生用檢核表記錄「是否先短答、是否回到數據、是否說清限制」。</div>
+  </section>
+
+
+  <section class="section" id="poster-ai">
+    <h2>海報檔上傳 AI 檢核與建議</h2>
+    <p>此功能在本機瀏覽器中運作，不會把檔案上傳到雲端。若上傳的是 PDF、圖片或 PowerPoint，瀏覽器通常無法完整讀出圖中文字；建議同步貼上海報文字、摘要或各區塊標題，檢核會更準。</p>
+    <div class="ai-layout">
+      <div class="upload-box">
+        <h3>上傳與輸入</h3>
+        <label class="small">海報檔案（PDF、PNG、JPG、PPTX、HTML、TXT）</label>
+        <input id="posterFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.ppt,.pptx,.html,.htm,.txt,.md,image/*,application/pdf">
+        <div class="file-preview" id="filePreview">尚未選擇檔案。</div>
+        <label class="small" for="posterText">貼上海報文字、摘要、標題或圖表說明</label>
+        <textarea id="posterText" placeholder="建議貼上：標題、摘要、研究問題、方法、變因表、主要結果、結論、限制、參考資料。"></textarea>
+        <div class="ai-actions"><button class="primary" id="posterAnalyzeBtn" type="button">開始 AI 檢核</button><button id="posterClearBtn" type="button">清除</button></div>
+      </div>
+      <div class="ai-result">
+        <h3>檢核結果</h3>
+        <div class="ai-score"><div class="bigscore" id="aiScore">--</div><div><div class="meter"><div class="bar" id="aiBar"></div></div><p class="small" id="aiVerdict">請上傳海報檔並貼上文字後開始檢核。</p></div></div>
+        <div id="fileFacts" class="small"></div>
+        <div class="category-bars" id="categoryBars"></div>
+        <h3>AI 建議</h3>
+        <div class="suggestions" id="aiSuggestions"><div class="suggestion">尚未分析。</div></div>
+      </div>
+    </div>
+    <div class="note">教學用法：讓每組上傳海報初稿，貼上摘要與圖表文字，取得建議後用紅筆在海報上標出「必改、可改、暫不改」。</div>
+  </section>
+
+  <section class="section" id="check">
+    <h2>檢核機制：海報、報告、詢答總表</h2>
+    <div class="score"><div><div class="meter"><div class="bar" id="scoreBar"></div></div><p id="scoreText" class="small">請勾選檢核項目，系統會自動計分。</p></div><div class="score-num" id="scoreNum">0 / 100</div></div>
+    <div class="check-grid" id="checkGrid"></div>
+    <h3>檢核摘要</h3>
+    <div class="print-summary" id="summary">尚未勾選。完成後可列印或另存 PDF，作為賽前修改清單。</div>
+  </section>
+
+  <section class="section sources">
+    <h2>官方依據與使用提醒</h2>
+    <p>本培訓網站引用全國中小學科學展覽會實施要點精神：研究計畫需包含研究動機、研究過程或方法、資料設備器材與資料表達方法；研究過程需記錄成研究或實驗日誌；作品規格、展示限制、評審標準與送件要求請依當年度公告核對。</p>
+    <p>來源：<a href="https://twsf.ntsec.gov.tw/Article.aspx?a=38&lang=1">中華民國中小學科學展覽會實施要點</a>、<a href="https://twsf.ntsec.gov.tw/">國立臺灣科學教育館科展資訊管理系統</a></p>
+  </section>
+</main>
+<script>
+
+
+const extResources=[
+{cat:'official',name:'全國科展資訊管理系統',url:'https://twsf.ntsec.gov.tw/',desc:'臺灣全國科展公告、規則、文件下載與歷屆作品入口。'},
+{cat:'official',name:'全國科展實施要點',url:'https://twsf.ntsec.gov.tw/Article.aspx?a=38&lang=1',desc:'核對參賽規範、作品格式、評審與送件要求。'},
+{cat:'official',name:'全國科展安全規則',url:'https://twsf.ntsec.gov.tw/Article.aspx?a=39&lang=1',desc:'檢查展示物、危險材料、電力、雷射與安全限制。'},
+{cat:'official',name:'歷屆優勝作品',url:'https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1',desc:'觀摩得獎作品的題目、方法、圖表與結論。'},
+{cat:'ethics',name:'ISEF International Rules',url:'https://www.societyforscience.org/isef/international-rules/',desc:'國際科展研究倫理、安全與資格規範。'},
+{cat:'ethics',name:'ISEF Rules Wizard',url:'https://ruleswizard.societyforscience.org/',desc:'依研究內容判斷可能需要哪些審查表件。'},
+{cat:'ethics',name:'ISEF Display & Safety Rules',url:'https://www.societyforscience.org/isef/international-rules/display-safety-rules/',desc:'展示安全、照片圖表、禁止展示物與現場安全檢查。'},
+{cat:'teaching',name:'Science Buddies Science Fair Guide',url:'https://www.sciencebuddies.org/science-fair-projects/science-fair',desc:'題目發想、研究流程、展示板、評審準備與學生指南。'},
+{cat:'research',name:'Google Scholar',url:'https://scholar.google.com/',desc:'搜尋學術文獻，建立文獻缺口與研究背景。'},
+{cat:'research',name:'Zotero',url:'https://www.zotero.org/',desc:'管理文獻、引用格式與參考資料。'},
+{cat:'visual',name:'Datawrapper',url:'https://www.datawrapper.de/',desc:'製作清楚的資料圖表，適合練習圖表可讀性。'},
+{cat:'visual',name:'Canva',url:'https://www.canva.com/',desc:'海報排版與視覺設計工具，需注意科學圖表不要過度裝飾。'},
+{cat:'visual',name:'BioRender',url:'https://www.biorender.com/',desc:'生物、醫學與流程示意圖工具，需遵守授權與引用規範。'},
+{cat:'teaching',name:'PhET Interactive Simulations',url:'https://phet.colorado.edu/zh_TW/',desc:'物理與科學概念模擬，適合補強原理理解與教學演示。'},
+{cat:'research',name:'Wolfram Alpha',url:'https://www.wolframalpha.com/',desc:'檢查方程、單位、函數趨勢與數學推導。'}
+];
+function renderExternalResources(filter='all'){const box=document.getElementById('externalList'); if(!box)return; box.innerHTML=extResources.filter(r=>filter==='all'||r.cat===filter).map(r=>'<div class="external-item"><a href="'+r.url+'" target="_blank" rel="noopener">'+r.name+'</a><p>'+r.desc+'</p><span class="mini-badge">'+r.cat+'</span></div>').join('');}
+function bindExternalFilters(){document.querySelectorAll('.ext-filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.ext-filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderExternalResources(btn.dataset.ext);}));renderExternalResources();}
+function runImradAudit(){const text=(document.getElementById('imradText').value||'').replace(/\s+/g,' '); const dims=[['Introduction 緒論',['研究動機','背景','文獻','缺口','問題','假說','目的']],['Methods 方法',['方法','材料','設備','變因','控制','流程','校正','重複']],['Results 結果',['結果','圖','表','數據','平均','標準差','誤差','趨勢']],['Discussion 討論',['討論','機制','原因','限制','未來','結論','前人','異常']]]; let html='<h3>IMRaD 完整度</h3>'; let score=0; dims.forEach(d=>{let hit=d[1].filter(w=>text.includes(w)).length; let pct=Math.min(100,Math.round(hit/4*100)); score+=pct; html+='<div class="imrad-bar"><span>'+d[0]+'</span><div class="cat-meter"><span style="width:'+pct+'%"></span></div><strong>'+pct+'</strong></div>';}); let total=Math.round(score/dims.length); let advice=total>=85?'結構完整，下一步檢查章節間邏輯鏈。':total>=65?'已有雛形，請補弱項章節。':'請先依 IMRaD 重排說明書。'; html+='<p><strong>總分：'+total+' / 100</strong><br>'+advice+'</p><ul><li>I 是否自然導出 M？</li><li>R 是否只講客觀結果？</li><li>D 是否解釋機制並說明限制？</li></ul>'; document.getElementById('imradResult').innerHTML=html;}
+function fillImradTemplate(){document.getElementById('imradText').value='Introduction：我們觀察到＿＿，前人已知＿＿，但尚未解決＿＿，因此本研究想驗證＿＿。\nMethods：我們控制＿＿，改變＿＿，測量＿＿，每組重複＿＿次，並用＿＿分析。\nResults：結果顯示＿＿，主圖的趨勢為＿＿，平均值或斜率為＿＿。\nDiscussion：我們認為原因是＿＿；目前限制為＿＿；下一步將＿＿。';runImradAudit();}
+
+const optRubric=[
+ {key:'question',name:'問題/目標',weight:10,tip:'問題清楚、聚焦、可被科學方法檢驗。'},
+ {key:'method',name:'方法設計',weight:15,tip:'變因控制完整，方法能重複。'},
+ {key:'execution',name:'執行與分析',weight:20,tip:'數據系統收集，分析足以支持結論。'},
+ {key:'creativity',name:'創意價值',weight:20,tip:'有新方法、新資料、新應用或新解釋。'},
+ {key:'presentation',name:'展示表達',weight:35,tip:'海報清楚，答辯簡潔，理解原理與限制。'}
+];
+function initOnlineOpt(){renderRubricSliders(); const d=document.getElementById('contestDate'); if(d){let future=new Date();future.setDate(future.getDate()+21);d.value=future.toISOString().slice(0,10);}}
+function renderRubricSliders(){const box=document.getElementById('rubricSliders'); if(!box)return; box.innerHTML=optRubric.map(r=>'<div class="rubric-row"><label>'+r.name+'<br><span class="small">權重 '+r.weight+'%</span></label><input type="range" min="1" max="5" value="3" step="1" data-rubric="'+r.key+'"><strong id="rubric-'+r.key+'">3</strong></div>').join(''); box.querySelectorAll('input').forEach(i=>i.addEventListener('input',calcRubric)); calcRubric();}
+function calcRubric(){let score=0,weak=[]; optRubric.forEach(r=>{const input=document.querySelector('[data-rubric="'+r.key+'"]'); if(!input)return; const val=Number(input.value); document.getElementById('rubric-'+r.key).textContent=val; score += val/5*r.weight; if(val<=2) weak.push(r.name+'：'+r.tip);}); const s=Math.round(score); const verdict=s>=85?'可進入高強度模擬評審':s>=70?'已有基礎，請補強弱項':s>=55?'需重整主圖、方法與限制':'請先回到研究主張與證據鏈'; document.getElementById('rubricResult').textContent='自評分數：'+s+' / 100\n判定：'+verdict+'\n'+(weak.length?'優先補強：\n• '+weak.join('\n• '):'目前沒有低於 3 分的項目，下一步請做挑戰型口試。');}
+function runBoardAudit(){const text=(document.getElementById('boardAuditText').value||'').replace(/\s+/g,' '); const checks=[['主張/問題',['研究問題','目的','假設','主張','探究']],['方法/變因',['方法','步驟','操縱變因','控制變因','應變變因','裝置']],['數據/圖表',['結果','數據','圖','表','平均','誤差','趨勢','單位']],['機制/討論',['原因','機制','模型','討論','推論','解釋']],['結論/限制',['結論','限制','外推','誤差來源','未來','改進']],['資料/規範',['參考','文獻','研究日誌','原始資料','安全','摘要']]]; let got=0, lines=[]; checks.forEach(c=>{let hit=c[1].some(w=>text.includes(w)); if(hit)got++; lines.push((hit?'✓ ':'△ ')+c[0]+(hit?' 已出現':' 建議補上'));}); let score=Math.round(got/checks.length*100); let advice=score>=85?'展示板結構完整，請改練口試追問。':score>=65?'結構大致可用，請補齊缺少項目。':'展示板缺少關鍵說服元素，建議先重排主線。'; document.getElementById('boardAuditResult').textContent='易讀性檢核：'+score+' / 100\n'+advice+'\n\n'+lines.join('\n')+'\n\n加分提醒：主圖下方應有一句「這張圖支持什麼結論」。';}
+let lastJudgeQuestion=null;
+function drawJudgeQuestion(){const mode=document.getElementById('judgeMode').value; const pool=qData.filter(x=>mode==='all'||x.mode===mode||x.case===mode||x.type===mode); lastJudgeQuestion=pool[Math.floor(Math.random()*pool.length)]; document.getElementById('judgeDraw').innerHTML='<span class="mini-badge">'+label(lastJudgeQuestion.case)+'</span><span class="mini-badge">'+label(lastJudgeQuestion.mode)+'</span><h3>'+lastJudgeQuestion.q+'</h3><p class="small">請學生 20 秒內先短答，再指向海報證據。</p>';}
+function revealJudgeHint(){if(!lastJudgeQuestion){drawJudgeQuestion();return;} document.getElementById('judgeDraw').innerHTML+='<p><strong>答題提示：</strong>'+lastJudgeQuestion.a+'</p><p class="small">評量：是否回答問題、是否指出證據、是否說出限制。</p>';}
+function makePrepPlan(){const val=document.getElementById('contestDate').value; const box=document.getElementById('prepPlan'); if(!val){box.innerHTML='<div class="plan-item">請先選擇日期。</div>';return;} const target=new Date(val+'T00:00:00'); const tasks=[[-21,'海報主張定稿：完成一句主張、主圖與版面草圖。'],[-14,'圖表與方法補強：檢查單位、誤差、重複次數與變因表。'],[-10,'6 分鐘報告第一輪：只修時間與主線。'],[-7,'挑戰型口試第一輪：誤差、控制變因、外推限制。'],[-3,'全隊輪答：每位學生都回答一般、挑戰、情意題各一題。'],[-1,'備品與資料檢查：研究日誌、原始數據、備份檔、展示物與安全規範。']]; box.innerHTML=tasks.map(t=>{let d=new Date(target);d.setDate(d.getDate()+t[0]);return '<div class="plan-item"><strong>'+d.toISOString().slice(0,10)+'</strong><br>'+t[1]+'</div>';}).join('');}
+
+const qData=[
+{case:'all',type:'logic',mode:'explain',q:'請用一句話說明你們的研究問題是什麼。',a:'先說現象，再說變因與測量目標，避免從研究動機講太久。'},
+{case:'all',type:'logic',mode:'explain',q:'這件作品的核心發現是什麼？最重要的證據是哪一張圖？',a:'指出主圖，先講趨勢，再講數字，最後連回研究主張。'},
+{case:'all',type:'method',mode:'explain',q:'你們如何設計實驗？操縱、控制、應變變因分別是什麼？',a:'用變因表回答，讓評審先看到公平比較。'},
+{case:'all',type:'limit',mode:'explain',q:'你們的結論可以說到哪裡？不能說到哪裡？',a:'說明資料支持範圍，並指出尚未涵蓋的條件。'},
+{case:'hall',type:'method',mode:'challenge',q:'霍爾感測器如何校正？背景磁場如何扣除？',a:'先說校正方式，再說每次量測前的零點或空白組，最後說剩餘誤差範圍。'},
+{case:'hall',type:'method',mode:'challenge',q:'感測器角度或距離偏差會造成多大影響？',a:'回到裝置圖，說明固定方法與重複測量；若尚未做，提出補測角度誤差。'},
+{case:'hall',type:'logic',mode:'challenge',q:'你們的結果能否用磁場模型解釋？',a:'先描述趨勢，再連到距離、方向或電流造成的磁場變化。'},
+{case:'hall',type:'limit',mode:'challenge',q:'這個方法能不能直接用來判斷所有金屬材料？',a:'不能直接外推；材料磁性、形狀與距離都會影響量測，需分別控制。'},
+{case:'hall',type:'logic',mode:'affective',q:'做霍爾量測時最困難的是裝置、校正還是解釋？你們如何克服？',a:'回答具體困難、嘗試過的修正與最後採用的理由。'},
+{case:'light',type:'method',mode:'challenge',q:'照度計高度、角度與測點位置如何控制？',a:'說明測點矩陣、固定高度、固定方向與環境光遮蔽。'},
+{case:'light',type:'logic',mode:'challenge',q:'平均照度提高是否代表教室照明變好？',a:'不一定；需要同時看最低照度與均勻度，避免局部過亮或暗區未改善。'},
+{case:'light',type:'logic',mode:'challenge',q:'導光、反射、散射如何影響結果？',a:'用材料特性解釋光路：透明導光、鏡面反射、霧面散射造成不同分佈。'},
+{case:'light',type:'limit',mode:'challenge',q:'模型教室能否外推到真實教室？',a:'只能作為趨勢參考；真實教室需考慮尺度、窗戶、牆面反射與人員遮蔽。'},
+{case:'light',type:'logic',mode:'affective',q:'你們最意外的照度分佈結果是什麼？它如何改變原本想法？',a:'用一個具體結果回答，說明如何調整假設或後續實驗。'},
+{case:'friction',type:'method',mode:'challenge',q:'你們量到的是最大靜摩擦還是動摩擦？',a:'說清楚量測定義；若是剛開始滑動前的最大力，就是最大靜摩擦。'},
+{case:'friction',type:'method',mode:'challenge',q:'拉動速度、角度、重量與地面水量如何控制？',a:'逐項說固定方式；若有感測器，說取樣與平均方式。'},
+{case:'friction',type:'logic',mode:'challenge',q:'材質與紋路同時改變時，如何判斷是紋路效果？',a:'不能直接歸因；需要相同材質試片，或把材質列為另一個變因。'},
+{case:'friction',type:'limit',mode:'challenge',q:'結果能否代表真實走路防滑？',a:'不能完全代表；真實步態有衝擊、角度、磨耗與不同地面條件。'},
+{case:'friction',type:'logic',mode:'affective',q:'測摩擦時最難穩定控制的是什麼？你們如何讓資料更可靠？',a:'說出拉速、角度、地面狀態或試片差異，並說明修正方式。'},
+{case:'all',type:'method',mode:'challenge',q:'為什麼重複次數足夠？',a:'說明每組重複次數、平均與誤差；若變異大，需增加測量或找出原因。'},
+{case:'all',type:'logic',mode:'challenge',q:'是否有不符合預期的資料？你們如何處理？',a:'承認異常值，說明是否保留、排除標準，以及它對結論的影響。'},
+{case:'all',type:'limit',mode:'challenge',q:'如果換材料、尺寸或環境，結論還成立嗎？',a:'先界定目前條件，再說哪些變因需重新測試。'},
+{case:'all',type:'logic',mode:'affective',q:'研究過程中最困難的一步是什麼？你們怎麼分工解決？',a:'具體說明困難、分工、修正策略，不要只回答「時間不夠」。'},
+{case:'all',type:'limit',mode:'affective',q:'如果多一週，你會補哪個實驗？為什麼？',a:'選最能補強限制的實驗，而不是新增華麗支線。'},
+{case:'all',type:'logic',mode:'affective',q:'這次研究讓你對科學方法最大的改變是什麼？',a:'連到控制變因、重複測量、誤差或模型修正，展現真實學習。'}
+];
+const checkGroups=[
+{title:'海報主張',items:['一句研究主張清楚且可驗證','標題能看出研究對象與變因','摘要包含方法、結果與結論','結論沒有超出資料支持範圍']},
+{title:'實驗設計',items:['操縱、控制、應變變因清楚','裝置圖或流程圖可讓別人重做','有校正、重複測量或誤差說明','原始數據與研究日誌可追溯']},
+{title:'圖表證據',items:['主圖能直接回答研究問題','每張圖有單位、座標、樣本數','圖下有一句結論','有處理異常值或資料變異']},
+{title:'口語報告',items:['30 秒版能說清研究主張','3 分鐘版能完成問題、方法、結果、機制、限制','每位學生都能說明至少一張圖','報告不只是背稿，能指向海報證據']},
+{title:'詢答能力',items:['回答先短答，再指出證據','能回答誤差與控制變因問題','能說明結果的科學機制','能承認限制並提出下一步']},
+{title:'賽場準備',items:['展示物符合規格與安全限制','補充資料、校正紀錄與照片已備妥','團隊分工明確且彼此能支援','正式規格已依當年度公告核對']}
+];
+
+qData.push(
+{case:'all',type:'logic',mode:'explain',q:'如果評審只看一張圖，你希望他看哪一張？為什麼？',a:'選主圖，說明它如何直接回答研究問題。'},
+{case:'all',type:'method',mode:'challenge',q:'你們最可能被質疑的控制變因是哪一個？',a:'先承認最難控制的因素，再說目前控制方式與補強實驗。'},
+{case:'all',type:'limit',mode:'challenge',q:'你的結論是否只是在證實已知？新意在哪裡？',a:'指出新材料、新方法、新資料、新應用或新解釋。'},
+{case:'all',type:'logic',mode:'affective',q:'研究中哪一次失敗最有價值？它讓你們改了什麼？',a:'說具體失敗、原因判斷、修正後結果。'},
+{case:'all',type:'method',mode:'affective',q:'這件作品哪一部分最能證明是你們自己做的？',a:'說自己負責的實作、量測、分析或修改，而不是泛泛說都有參與。'},
+{case:'hall',type:'method',mode:'challenge',q:'若霍爾感測器本身有零點漂移，你們的趨勢還可信嗎？',a:'說明空白量測、重複校正與漂移量是否小於主要差異。'},
+{case:'light',type:'logic',mode:'challenge',q:'如果某材料平均照度最高但均勻度最差，你會推薦它嗎？',a:'先回到研究目標；若目標是教室照明品質，不能只看平均值。'},
+{case:'friction',type:'method',mode:'challenge',q:'如果同一紋路重複測量差異很大，你會如何處理？',a:'檢查拉速、角度、地面狀態與試片磨耗，必要時增加重複次數或重做。'}
+);
+
+function renderQuestions(filter='all'){
+ const box=document.getElementById('questions');
+ box.innerHTML='';
+ qData.filter(x=>filter==='all'||x.case===filter||x.type===filter||x.mode===filter||x.case==='all').forEach((x,i)=>{
+  const card=document.createElement('div'); card.className='qcard';
+  card.innerHTML='<div class="meta">'+label(x.case)+'｜'+label(x.mode)+'｜'+label(x.type)+'</div><div class="q">'+(i+1)+'. '+x.q+'</div><div class="a">答題框架：'+x.a+'</div>';
+  box.appendChild(card);
+ });
+}
+function label(v){return {hall:'霍爾量測',light:'導光照度',friction:'鞋底摩擦',all:'通用',method:'方法/誤差',logic:'機制/推論',limit:'限制/外推',explain:'一般說明性',challenge:'挑戰型',affective:'情意態度'}[v]||v;}
+document.querySelectorAll('.qfilter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.qfilter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderQuestions(btn.dataset.filter);}));
+document.querySelectorAll('.case-tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.case-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.case-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('case-'+btn.dataset.case).classList.add('active');}));
+function renderChecks(){const grid=document.getElementById('checkGrid');grid.innerHTML='';checkGroups.forEach((g,gi)=>{const div=document.createElement('div');div.className='check-group';div.innerHTML='<h3>'+g.title+'</h3>';g.items.forEach((it,ii)=>{const id='chk-'+gi+'-'+ii;const row=document.createElement('label');row.className='check-item';row.innerHTML='<input type="checkbox" id="'+id+'"><span>'+it+'</span><span class="small">4分</span>';div.appendChild(row);});grid.appendChild(div);});document.querySelectorAll('#checkGrid input').forEach(x=>x.addEventListener('change',updateScore));updateScore();}
+function updateScore(){const boxes=[...document.querySelectorAll('#checkGrid input')];const got=boxes.filter(x=>x.checked).length;const total=boxes.length;const score=Math.round(got/total*100);document.getElementById('scoreBar').style.width=score+'%';document.getElementById('scoreNum').textContent=score+' / 100';let level=score>=85?'可進入賽前模擬評審':score>=70?'需補強圖表與詢答':score>=50?'需重整海報主線':'先回到研究主張與證據鏈';document.getElementById('scoreText').textContent=level+'（已完成 '+got+' / '+total+' 項）';let missing=boxes.filter(x=>!x.checked).map(x=>x.parentElement.querySelector('span').textContent);document.getElementById('summary').textContent='完成分數：'+score+' / 100\n判定：'+level+'\n\n待補強項目：\n'+(missing.length?missing.map(x=>'• '+x).join('\n'):'• 已完成所有檢核項目');}
+
+function bindPosterAI(){
+ const fileInput=document.getElementById('posterFile'); const textInput=document.getElementById('posterText'); const preview=document.getElementById('filePreview');
+ if(!fileInput) return;
+ fileInput.addEventListener('change',()=>{const f=fileInput.files[0]; if(!f){preview.textContent='尚未選擇檔案。'; return;} const size=(f.size/1024/1024).toFixed(2); let html='<strong>'+f.name+'</strong><br><span class="small">類型：'+(f.type||'未知')+'｜大小：'+size+' MB</span>'; if(f.type.startsWith('image/')) html+='<img alt="海報預覽" src="'+URL.createObjectURL(f)+'">'; else if(f.type==='application/pdf') html+='<embed src="'+URL.createObjectURL(f)+'#toolbar=0" type="application/pdf">'; else html+='<p class="small">此格式可進行檔案資訊檢核；若要分析文字，請把海報文字貼到下方欄位。</p>'; preview.innerHTML=html; });
+ document.getElementById('posterAnalyzeBtn').addEventListener('click',analyzePoster);
+ document.getElementById('posterClearBtn').addEventListener('click',()=>{fileInput.value='';textInput.value='';preview.textContent='尚未選擇檔案。';document.getElementById('aiScore').textContent='--';document.getElementById('aiBar').style.width='0%';document.getElementById('aiVerdict').textContent='請上傳海報檔並貼上文字後開始檢核。';document.getElementById('fileFacts').textContent='';document.getElementById('categoryBars').innerHTML='';document.getElementById('aiSuggestions').innerHTML='<div class="suggestion">尚未分析。</div>';});
+}
+function hasAny(text,words){return words.some(w=>text.includes(w));}
+function countAny(text,words){return words.reduce((n,w)=>n+(text.includes(w)?1:0),0);}
+function analyzePoster(){
+ const f=document.getElementById('posterFile').files[0]; const raw=document.getElementById('posterText').value||''; const text=raw.replace(/\s+/g,' '); const low=text.toLowerCase(); const facts=[]; const suggestions=[]; let score=0;
+ if(f){facts.push('檔名：'+f.name);facts.push('大小：'+(f.size/1024/1024).toFixed(2)+' MB');facts.push('格式：'+(f.type||f.name.split('.').pop()));score+=6;} else suggestions.push({kind:'warn',text:'尚未上傳海報檔。建議上傳 PDF、圖片或 PPTX，讓檢核摘要能記錄版本。'});
+ if(text.length>80){score+=8;} else suggestions.push({kind:'warn',text:'貼上的海報文字太少。請至少貼上標題、摘要、研究問題、方法、結果、結論與限制。'});
+ const cats=[
+  {name:'主張與問題',max:14,hit:countAny(text,['研究問題','研究目的','動機','假設','現象','探究','主張']),tip:'補上清楚研究問題：研究對象、變因與想驗證的關係。'},
+  {name:'方法與變因',max:16,hit:countAny(text,['方法','步驟','操縱變因','控制變因','應變變因','裝置','校正','重複','樣本']),tip:'補上變因表、裝置圖與重複測量方式。'},
+  {name:'數據與圖表',max:16,hit:countAny(text,['結果','數據','圖','表','平均','誤差','單位','趨勢','係數','照度','磁場','摩擦']),tip:'每張圖要有單位、樣本數、誤差或重複次數，並加一句圖表結論。'},
+  {name:'機制與解釋',max:12,hit:countAny(text,['原因','機制','模型','解釋','推論','因為','因此','支持']),tip:'補上為什麼會這樣的科學機制，不只描述結果。'},
+  {name:'結論與限制',max:16,hit:countAny(text,['結論','發現','限制','誤差來源','外推','改進','未來','尚未']),tip:'結論要回答研究問題；限制要說明資料能支持到哪裡。'},
+  {name:'規格與完整性',max:12,hit:countAny(text,['參考','文獻','安全','研究日誌','原始資料','附錄','摘要']),tip:'補上引用、研究日誌、原始資料與安全或規格說明。'}
+ ];
+ cats.forEach(c=>{let got=Math.min(c.max, Math.round(c.hit/3*c.max)); score+=got; c.got=got; if(got<c.max*0.55) suggestions.push({kind:'warn',text:c.name+'不足：'+c.tip}); else suggestions.push({kind:'good',text:c.name+'已有基本線索，可再檢查是否用圖表支撐。'});});
+ let work='通用'; if(/[霍爾磁場迴紋針]/.test(text) || (f&&/[霍爾磁場迴紋針]/.test(f.name))) work='霍爾量測'; if(/[導光照度教室光影]/.test(text) || (f&&/[導光照度教室光影]/.test(f.name))) work='導光照度'; if(/[鞋底摩擦紋路防滑]/.test(text) || (f&&/[鞋底摩擦紋路防滑]/.test(f.name))) work='鞋底摩擦'; facts.push('判讀案例：'+work);
+ if(work==='霍爾量測') suggestions.push({kind:'',text:'霍爾作品建議：請確認海報有感測器方向、距離固定、零點校正與背景磁場扣除。'});
+ if(work==='導光照度') suggestions.push({kind:'',text:'導光作品建議：請把照度表轉成熱區圖，並同時呈現平均照度、最低照度與均勻度。'});
+ if(work==='鞋底摩擦') suggestions.push({kind:'',text:'鞋底作品建議：請拆開材質、紋路、地面狀態與拉動速度，避免把結果只歸因於紋路。'});
+ score=Math.max(0,Math.min(100,score)); const verdict=score>=85?'成熟：可進入模擬評審':score>=70?'良好：需補強缺口後定稿':score>=55?'普通：主線可見，但證據與限制需重修':'需重整：先回到研究主張、變因與主圖';
+ document.getElementById('aiScore').textContent=score; document.getElementById('aiBar').style.width=score+'%'; document.getElementById('aiVerdict').textContent=verdict; document.getElementById('fileFacts').innerHTML=facts.map(x=>'<span class="ai-pill">'+x+'</span>').join('');
+ document.getElementById('categoryBars').innerHTML=cats.map(c=>'<div class="cat-row"><span>'+c.name+'</span><div class="cat-meter"><span style="width:'+Math.round(c.got/c.max*100)+'%"></span></div><span>'+c.got+'/'+c.max+'</span></div>').join('');
+ document.getElementById('aiSuggestions').innerHTML=suggestions.slice(0,10).map(s=>'<div class="suggestion '+(s.kind||'')+'">'+s.text+'</div>').join('');
+}
+
+let timerSeconds=180,remaining=180,timerHandle=null;function showClock(){let m=Math.floor(remaining/60),s=remaining%60;document.getElementById('clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}function setTimer(sec){timerSeconds=sec;remaining=sec;pauseTimer();showClock();}function startTimer(){if(timerHandle)return;timerHandle=setInterval(()=>{remaining=Math.max(0,remaining-1);showClock();if(remaining===0)pauseTimer();},1000);}function pauseTimer(){clearInterval(timerHandle);timerHandle=null;}function resetTimer(){remaining=timerSeconds;pauseTimer();showClock();}
+renderQuestions();renderChecks();bindPosterAI();initOnlineOpt();bindExternalFilters();showClock();
+</script>
+</body>
+</html>
